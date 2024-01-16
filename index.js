@@ -38,9 +38,9 @@ const routes_publications = require("./routes/publications/publication")
 const routes_followers = require("./routes/followers/follower")
 
 //cargo las rutas
-app.use("/api", routes_users);
-app.use("/api", routes_publications)
-app.use("/api", routes_followers)
+app.use("/api/user", routes_users);
+app.use("/api/publication", routes_publications)
+app.use("/api/follower", routes_followers)
 
 // porner al servidor a escuchar peticiones http
 app.listen(puerto, () => {

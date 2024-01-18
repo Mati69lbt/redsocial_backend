@@ -4,6 +4,7 @@ const register_user = require("../../controllers/users/register_users");
 const login = require("../../controllers/users/login_user");
 const auth = require("../../middlewares/auth");
 const profile = require("../../controllers/users/datos_del_usuario");
+const listado = require("../../controllers/users/listado_de_usuarios");
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.get("/prueba-users", auth, prueba_users);
 router.post("/register", register_user);
 router.post("/login", login);
 router.get("/profile/:id", auth, profile);
+router.get("/list/:page?", auth, listado);
 
 //exportar
 module.exports = router;

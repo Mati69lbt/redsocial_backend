@@ -25,7 +25,7 @@ const register_user = async (req, res) => {
 
     if (existingUsers && existingUsers.length >= 1) {
       return res.status(409).send({
-        status: "success",
+        status: "error",
         message: "El correo electrónico o nombre de usuario ya está registrado",
       });
     }
@@ -35,6 +35,21 @@ const register_user = async (req, res) => {
     params.password = hashedPassword;
 
     // crear objeto de usuario
+    // console.log("Original nick:", params.nick);
+    // console.log("Original email:", params.email);
+
+    // if (typeof params.nick === "string") {
+    //   params.nick = params.nick.toLowerCase();
+    //   console.log("Converted nick:", params.nick);
+    // } else {
+    //   console.log("params.nick is not a string");
+    // }
+    // if (typeof params.email === "string") {
+    //   params.email = params.email.toLowerCase();
+    //   console.log("Converted email:", params.email);
+    // } else {
+    //   console.log("params.email is not a string");
+    // }
     let user_to_save = new User(params);
 
     // guardar usuarios en la base de datos y
@@ -45,6 +60,7 @@ const register_user = async (req, res) => {
         status: "success",
         message: "Usuario registrado exitosamente",
         user_save,
+        existingUsers: existingUsers,
       });
     } catch (error) {
       console.log("Error al salvar el usuario ", error);

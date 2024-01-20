@@ -8,6 +8,7 @@ const secret = libjwt.secret;
 
 // Middleware de autenticacion
 const auth = (req, res, next) => {
+  console.log("Se esta usando el Middleware de Auth");
   // Comprobar si me llega la cabecera de autenticacion
   if (!req.headers.authorization) {
     return res.status(403).send({

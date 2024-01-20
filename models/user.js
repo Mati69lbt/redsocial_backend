@@ -10,10 +10,13 @@ const UserSchema = Schema({
   nick: {
     type: String,
     require: true,
+    unique: true,
   },
+  bio: String,
   email: {
     type: String,
     require: true,
+    unique: true,
   },
   password: {
     type: String,

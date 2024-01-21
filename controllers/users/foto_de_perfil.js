@@ -2,6 +2,7 @@ const User = require("../../models/user");
 const fs = require("fs");
 
 const foto_de_perfil = async (req, res) => {
+  // Sube a la Base de Datos tu foto de Perfil
   // Recoger el fichero de imagen y comprobar que existe
   if (!req.file) {
     return res.status(404).send({

@@ -1,4 +1,5 @@
 const user = require("../../models/user");
+const { id_Usuario_para_ver_sus_follows } = require("../../services/ids_de_seguidores_y_seguidos");
 
 
 const listado = async (req, res) => {
@@ -27,6 +28,9 @@ const listado = async (req, res) => {
       });
     }
 
+    // Hacer un listado de ids de los usuarios que me siguen y sigo
+    let followUserIds = await id_Usuario_para_ver_sus_follows(req.user.id);
+
     return res.status(200).send({
       status: "success",
       menssage: "Ruta de listado de usuarios",
@@ -35,7 +39,8 @@ const listado = async (req, res) => {
       total_de_usuarios: usuarios.totalDocs,
       total_de_paginas: Math.ceil(usuarios.totalDocs / itemsPorPagina),
       users: usuarios.docs,
-      
+      siguiendo: followUserIds.siguiendo,
+      me_siguen: followUserIds.seguidores,
     });
   } catch (error) {
     return res.status(500).json({

@@ -1,5 +1,5 @@
 const user = require("../../models/user");
-// importa pagionate de mongoose
+
 
 const listado = async (req, res) => {
   // Controlar en que pagina estamos

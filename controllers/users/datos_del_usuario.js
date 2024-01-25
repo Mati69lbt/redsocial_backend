@@ -1,4 +1,7 @@
 const user = require("../../models/user");
+const {
+  ver_si_me_sigo_con_ese_usuario,
+} = require("../../services/ids_de_seguidores_y_seguidos");
 
 const profile = async (req, res) => {
   // Aca tomaremos los datos del usuario
@@ -22,11 +25,20 @@ const profile = async (req, res) => {
       message: "El usuario no existe",
     });
   } else {
-    // posteriormente devolver los followers
+    // info de seguimiento
+
+    const informacion_de_seguidores = await ver_si_me_sigo_con_ese_usuario(
+      req.user.id,
+      id
+    );
+    console.log("informacion_de_seguidores", informacion_de_seguidores);
+
     res.status(200).json({
       status: "success",
       consulta: id,
       user: usuario,
+      lo_sigo: informacion_de_seguidores.lo_sigo,
+      me_sigue: informacion_de_seguidores.me_sigue,
     });
   }
 };

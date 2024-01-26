@@ -37,8 +37,8 @@ router.get(
   auth,
   publicaciones_de_un_usuario
 );
-router.post("/upload/:id", [auth, uploads.single("file0")], subir_imagen_a_bd);
-router.get("/imagen/:file", auth, conseguir_imagen_de_la_bd);
+router.post("/upload/", [auth, uploads.single("file0")], subir_imagen_a_bd);
+router.get("/imagen/:file",  conseguir_imagen_de_la_bd);
 router.get("/feed/:page?", auth, listado_de_publicaciones_q_yo_sigo);
 
 //exportar

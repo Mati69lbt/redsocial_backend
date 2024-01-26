@@ -19,6 +19,7 @@ const listado = async (req, res) => {
       page: page,
       limit: itemsPorPagina,
       sort: { surname: 1 },
+      select: "-password -role -__v -email",
     };
 
     const usuarios = await user.paginate({}, options);

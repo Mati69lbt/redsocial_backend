@@ -22,12 +22,13 @@ const listado = require("../../controllers/users/listado_de_usuarios");
 const update = require("../../controllers/users/actualizar_perfil");
 const foto_de_perfil = require("../../controllers/users/foto_de_perfil");
 const avatar = require("../../controllers/users/avatar");
+const contadores = require("../../controllers/users/contadores");
 
 const router = Router();
 
 // importar
 
-// Definir 
+// Definir
 router.get("/prueba-users", auth, prueba_users);
 router.post("/register", register_user);
 router.post("/login", login);
@@ -35,7 +36,8 @@ router.get("/profile/:id", auth, profile);
 router.get("/list/:page?", auth, listado);
 router.put("/update", auth, update);
 router.post("/upload", [auth, uploads.single("file0")], foto_de_perfil);
-router.get("/avatar/:file", auth, avatar);
+router.get("/avatar/:file", avatar);
+router.get("/estadisticas/:id", auth, contadores);
 
 //exportar
 module.exports = router;

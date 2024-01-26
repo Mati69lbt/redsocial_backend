@@ -43,6 +43,8 @@ const update = async (req, res) => {
     if (userToUpdate.password) {
       const hashedPassword = await bcrypt.hash(userToUpdate.password, 10);
       userToUpdate.password = hashedPassword;
+    } else {
+      delete userToUpdate.password;
     }
 
     // Buscar y actualizar

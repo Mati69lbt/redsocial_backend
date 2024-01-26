@@ -31,7 +31,7 @@ const siguiendo = async (req, res) => {
     await Follow.populate(busqueda.docs, {
       path: "user followed",
       options: {
-        select: "-password -role -__v",
+        select: "-password -role -__v -email",
       },
     });
 
@@ -86,7 +86,7 @@ const seguidores = async (req, res) => {
       path: "user followed",
       options: {
         sort: { name: 1 },
-        select: "-password -role -__v",
+        select: "-password -role -__v -email",
       },
     });
 

@@ -3,7 +3,7 @@ const Publication = require("../../models/publication");
 const guardar_publicacion = async (req, res) => {
   // Recoger datos del Body
   const params = req.body;
-  console.log("params:", params);
+
   // Si no llega un texto, devolver una respuesta de error
   if (!params.text) {
     return res.status(400).json({

@@ -50,8 +50,6 @@ const publicaciones_de_un_usuario = async (req, res) => {
       error: error.message,
     });
   }
-
-  // Controlar la pagina
 };
 
 module.exports = publicaciones_de_un_usuario;

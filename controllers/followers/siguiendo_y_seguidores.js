@@ -23,6 +23,7 @@ const siguiendo = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
+      sort: "name",
     };
     // Buscar a follow, popular datos de los usuarios y paginar con mongoose paginate
     const busqueda = await Follow.paginate({ user: userId }, options);
@@ -30,7 +31,6 @@ const siguiendo = async (req, res) => {
     await Follow.populate(busqueda.docs, {
       path: "user followed",
       options: {
-        sort: { name: 1 },
         select: "-password -role -__v",
       },
     });
@@ -88,28 +88,27 @@ const seguidores = async (req, res) => {
         sort: { name: 1 },
         select: "-password -role -__v",
       },
-    });  
+    });
 
-     let followUserIds = await id_Usuario_para_ver_sus_follows(userId);
+    let followUserIds = await id_Usuario_para_ver_sus_follows(userId);
 
-     return res.status(200).send({
-       status: "success",
-       message: "Aqui veras el listado de usuarios que me siguen!",
-       page,
-       itemsPorPagina,
-       Total_de_seguidores: busqueda.totalDocs,
-       totalPages: busqueda.totalPages,
-       siguiendo: followUserIds.siguiendo,
-       me_siguen: followUserIds.seguidores,
-       resultados: busqueda,
-     });
+    return res.status(200).send({
+      status: "success",
+      message: "Aqui veras el listado de usuarios que me siguen!",
+      page,
+      itemsPorPagina,
+      Total_de_seguidores: busqueda.totalDocs,
+      totalPages: busqueda.totalPages,
+      siguiendo: followUserIds.siguiendo,
+      me_siguen: followUserIds.seguidores,
+      resultados: busqueda,
+    });
   } catch (error) {
     return res.status(500).send({
       status: "Error",
       message: error.message,
     });
   }
-
 };
 
 module.exports = {

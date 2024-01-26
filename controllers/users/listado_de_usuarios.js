@@ -1,6 +1,7 @@
 const user = require("../../models/user");
-const { id_Usuario_para_ver_sus_follows } = require("../../services/ids_de_seguidores_y_seguidos");
-
+const {
+  id_Usuario_para_ver_sus_follows,
+} = require("../../services/ids_de_seguidores_y_seguidos");
 
 const listado = async (req, res) => {
   // Controlar en que pagina estamos
@@ -17,6 +18,7 @@ const listado = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
+      sort: { surname: 1 },
     };
 
     const usuarios = await user.paginate({}, options);
@@ -24,7 +26,7 @@ const listado = async (req, res) => {
     if (!usuarios || usuarios.length === 0) {
       return res.status(404).json({
         status: "error",
-        message: "No hay artículos en la base de datos",
+        message: "No hay usuarios en la base de datos",
       });
     }
 

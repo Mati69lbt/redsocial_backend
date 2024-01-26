@@ -1,5 +1,5 @@
 const { Router } = require("express");
-("uploadsavatars");
+
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -27,14 +27,14 @@ const router = Router();
 
 // importar
 
-// Definir
+// Definir 
 router.get("/prueba-users", auth, prueba_users);
 router.post("/register", register_user);
 router.post("/login", login);
 router.get("/profile/:id", auth, profile);
 router.get("/list/:page?", auth, listado);
 router.put("/update", auth, update);
-router.get("/upload", [auth, uploads.single("file0")], foto_de_perfil);
+router.post("/upload", [auth, uploads.single("file0")], foto_de_perfil);
 router.get("/avatar/:file", auth, avatar);
 
 //exportar

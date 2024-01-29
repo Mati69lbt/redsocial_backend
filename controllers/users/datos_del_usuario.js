@@ -31,7 +31,6 @@ const profile = async (req, res) => {
       req.user.id,
       id
     );
-    console.log("informacion_de_seguidores", informacion_de_seguidores);
 
     res.status(200).json({
       status: "success",

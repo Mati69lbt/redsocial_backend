@@ -13,7 +13,7 @@ const contadores = async (req, res) => {
     return res.status(200).send({
       a: req.user,
       b: req.params,
-      seguiendo: siguiendo,
+      siguiendo: siguiendo,
       seguidores: seguidores,
       publicaciones: publicaciones,
     });

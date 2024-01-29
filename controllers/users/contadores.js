@@ -11,8 +11,8 @@ const contadores = async (req, res) => {
     const publicaciones = await Publication.countDocuments({ user: userId });
 
     return res.status(200).send({
-      a: req.user,
-      b: req.params,
+      reqUser: req.user,
+      reqParams: req.params,
       siguiendo: siguiendo,
       seguidores: seguidores,
       publicaciones: publicaciones,

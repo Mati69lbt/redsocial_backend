@@ -6,14 +6,14 @@ const contadores = async (req, res) => {
     userId = req.params.id;
   }
   try {
-    const seguiendo = await Follow.countDocuments({ user: userId });
+    const siguiendo = await Follow.countDocuments({ user: userId });
     const seguidores = await Follow.countDocuments({ followed: userId });
     const publicaciones = await Publication.countDocuments({ user: userId });
 
     return res.status(200).send({
       a: req.user,
       b: req.params,
-      seguiendo: seguiendo,
+      seguiendo: siguiendo,
       seguidores: seguidores,
       publicaciones: publicaciones,
     });

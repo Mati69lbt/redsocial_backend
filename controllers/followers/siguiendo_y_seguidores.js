@@ -23,7 +23,7 @@ const siguiendo = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
-      sort: "name",
+      sort: { surname: 1 },
     };
     // Buscar a follow, popular datos de los usuarios y paginar con mongoose paginate
     const busqueda = await Follow.paginate({ user: userId }, options);
@@ -78,6 +78,7 @@ const seguidores = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
+      sort: { surname: 1 },
     };
     // Buscar a follow, popular datos de los usuarios y paginar con mongoose paginate
     const busqueda = await Follow.paginate({ followed: userId }, options);
@@ -85,7 +86,6 @@ const seguidores = async (req, res) => {
     await Follow.populate(busqueda.docs, {
       path: "user followed",
       options: {
-        sort: { name: 1 },
         select: "-password -role -__v -email",
       },
     });

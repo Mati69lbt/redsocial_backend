@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const subir_imagen_a_bd = async (req, res) => {
   // Sube a la Base de Datos tu foto de Perfil
-  console.log(req.file);
+  
   // Sacar publicationID
   let publicationId = req.params.id;
   // Recoger el fichero de imagen y comprobar que existe

@@ -18,7 +18,7 @@ const listado = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
-      sort: { surname: 1 },
+      sort: "created_at: -1",
       select: "-password -role -__v -email",
     };
 

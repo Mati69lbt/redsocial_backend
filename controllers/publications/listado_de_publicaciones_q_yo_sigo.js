@@ -36,6 +36,7 @@ const listado_de_publicaciones_q_yo_sigo = async (req, res) => {
       path: "user",
       options: {
         select: "-password -role -__v -email",
+        sort: "created_at: -1",
       },
     });
 

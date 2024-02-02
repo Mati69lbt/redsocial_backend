@@ -23,7 +23,7 @@ const siguiendo = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
-      sort: "created_at: -1",
+      sort: { surname: -1 },
     };
     // Buscar a follow, popular datos de los usuarios y paginar con mongoose paginate
     const busqueda = await Follow.paginate({ user: userId }, options);
@@ -32,7 +32,6 @@ const siguiendo = async (req, res) => {
       path: "user followed",
       options: {
         select: "-password -role -__v -email",
-        sort: "created_at: -1",
       },
     });
 

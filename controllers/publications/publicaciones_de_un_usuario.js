@@ -31,7 +31,7 @@ const publicaciones_de_un_usuario = async (req, res) => {
       path: "user",
       options: {
         select: "-password -__v -role",
-        sort: "created_at: -1",
+        sort: {created_at: -1},
       },
     });
 

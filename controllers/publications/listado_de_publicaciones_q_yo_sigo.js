@@ -24,7 +24,7 @@ const listado_de_publicaciones_q_yo_sigo = async (req, res) => {
     const options = {
       page: page,
       limit: itemsPorPagina,
-      sort: "created_at: -1",
+      sort: { created_at: -1 },
     };
     // Buscar a follow, popular datos de los usuarios y paginar con mongoose paginate
     const busqueda = await Publication.paginate(
@@ -36,7 +36,6 @@ const listado_de_publicaciones_q_yo_sigo = async (req, res) => {
       path: "user",
       options: {
         select: "-password -role -__v -email",
-        sort: "created_at: -1",
       },
     });
 
